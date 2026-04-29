@@ -189,4 +189,49 @@ Type of middleware
 ##### Because of Same-Origin Policy. 
 ##### Browser blocks requests if frontend & backend origins are different
 This is for security reasons (to prevent attacks)
+#
 
+
+### What is idempotency in APIs?
+##### Performing the same operation multiple times gives the same result
+##### Idempotency in APIs means that making the same request multiple times will have the same effect as making it once. It ensures that repeated requests do not cause unintended side effects on the server.
+```
+PUT /api/users/1
+
+If you send this request 1 time or 10 times → User data remains the same
+```
+
+##### Idempotency is crucial in distributed systems to ensure safe retries and prevent duplicate operations, especially in critical actions like payments.
+
+#
+
+### Authentication vs Authorization.
+##### Authentication is the process of verifying the identity of a user, usually through credentials like email and password or tokens.
+##### Authorization is the process of determining what actions or resources the authenticated user is allowed to access based on roles or permissions.
+
+```
+Authentication Middleware
+
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization;
+  // verify token
+  next();
+};
+
+
+Authorization Middleware
+
+const isAdmin = (req, res, next) => {
+  if (req.user.role !== "admin") {
+    return res.status(403).send("Access Denied");
+  }
+  next();
+};
+```
+
+##### Authentication ensures the user is valid, while authorization ensures the user has the right permissions to perform a specific action, often implemented using role-based access control (RBAC).
+
+#
+
+### How does JWT work?
+##### 
