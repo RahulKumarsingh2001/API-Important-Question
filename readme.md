@@ -1,5 +1,7 @@
 # APIS
 
+## EASY LEVEL
+
 ### What is an API?
 ##### API (Application Programming Interface) is a way for two software systems to communicate with each other.
 ##### An API (Application Programming Interface) is a set of rules and protocols that allows different software applications to communicate with each other. It acts as an intermediary that enables a client to request data or services from a server and receive a response.
@@ -148,3 +150,43 @@ Statelessness is Important
 3. Reliability
     If one request fails → others unaffected        
 ```
+
+
+
+## MEDIUM LEVEL
+
+### What is middleware in Express?
+##### Middleware = a function that runs between request and response
+##### Middleware in Express is a function that has access to the request, response, and next function. It is used to process incoming requests before they reach the route handler, for tasks like authentication, logging, and validation.
+
+```
+app.use((req, res, next) => {
+  console.log("Middleware executed");
+  next(); 
+});
+```
+
+```
+Type of middleware
+
+1. Application-level -> app.use(middleware)
+2. Route-level -> app.get('/route', middleware, handler)
+3. Built-in -> app.use(express.json())
+4. Third-party -> const cors = require('cors');
+                  app.use(cors());
+
+```
+
+#
+
+### What is CORS and why does it occur?
+##### CORS = Cross-Origin Resource Sharing
+##### It is a security feature implemented by browsers that restricts requests from one origin to another.
+##### CORS (Cross-Origin Resource Sharing) is a browser security mechanism that restricts web applications from making requests to a different domain than the one that served the frontend. It occurs due to the same-origin policy, and it can be controlled by setting appropriate headers on the server.
+
+
+#### Why CORS Occurs?
+##### Because of Same-Origin Policy. 
+##### Browser blocks requests if frontend & backend origins are different
+This is for security reasons (to prevent attacks)
+
